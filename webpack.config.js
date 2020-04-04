@@ -26,5 +26,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     })
-  ]
+  ],
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/
+  }
 };
