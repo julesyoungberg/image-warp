@@ -12,13 +12,14 @@
   "author": "Jules Youngberg",
   "license": "ISC",
   "dependencies": {
+    "@babel/runtime": "^7.9.2",
     "dat.gui": "^0.7.7",
     "p5": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
-    "@babel/runtime": "^7.9.2",
     "babel-loader": "^8.1.0",
     "html-webpack-plugin": "^4.0.4",
     "webpack": "^4.42.1",
