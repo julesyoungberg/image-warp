@@ -13,9 +13,18 @@ const state = {
 
 window.onload = function() {
     const gui = new dat.GUI()
-    gui.add(state, 'trippiness').min(0).max(1).step(0.01);
-    gui.add(state, 'separation').min(0).max(1).step(0.01);
-    gui.add(state, 'frequency').min(0).max(100).step(1);
+    gui.add(state, 'trippiness')
+        .min(0)
+        .max(1)
+        .step(0.01)
+    gui.add(state, 'separation')
+        .min(0)
+        .max(1)
+        .step(0.01)
+    gui.add(state, 'frequency')
+        .min(0)
+        .max(100)
+        .step(1)
 }
 
 function getCanvasSize(p) {
@@ -24,7 +33,7 @@ function getCanvasSize(p) {
     return { width, height }
 }
 
-const sketch = (p) => {
+const sketch = p => {
     let shader, image, result
 
     p.preload = () => {
@@ -42,10 +51,7 @@ const sketch = (p) => {
         p.shader(shader)
 
         shader.setUniform('time', state.time / 1000)
-        shader.setUniform('mouse', [
-            state.mouse.x / p.width,
-            (state.mouse.y - p.height) / -p.height,
-        ])
+        shader.setUniform('mouse', [state.mouse.x / p.width, (state.mouse.y - p.height) / -p.height])
         shader.setUniform('freq', state.frequency + 2 * Math.sin(0.0007 * state.time))
         shader.setUniform('amp', state.trippiness + Math.max(0, 0.03 * Math.cos(0.001 * state.time)))
         shader.setUniform('moving', 0)
