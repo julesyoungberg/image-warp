@@ -37,6 +37,7 @@ const sketch = p => {
     let shader, image, result
 
     p.preload = () => {
+        /** @todo use proper webpack loaders */
         shader = p.loadShader('./assets/shaders/shader.vert', './assets/shaders/shader.frag')
         image = p.loadImage('./assets/images/masks.jpg')
     }
