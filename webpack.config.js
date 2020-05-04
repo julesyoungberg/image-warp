@@ -27,8 +27,4 @@ module.exports = {
             template: 'src/index.html',
         }),
     ],
-    watch: true,
-    watchOptions: {
-        ignored: /node_modules/,
-    },
 }
