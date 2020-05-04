@@ -4,7 +4,6 @@ import p5 from 'p5'
 const imageSize = { width: 1024, height: 1288 }
 
 const state = {
-    mouse: { x: 0, y: 0 },
     trippiness: 0.08,
     separation: 0.2,
     frequency: 10,
@@ -52,7 +51,10 @@ const sketch = p => {
         p.shader(shader)
 
         shader.setUniform('time', state.time / 1000)
-        shader.setUniform('mouse', [state.mouse.x / p.width, (state.mouse.y - p.height) / -p.height])
+        shader.setUniform('mouse', [
+            p.mouseX / p.width,
+            p.map(p.mouseY, 0, p.height, p.height, 0) / p.height
+        ])
         shader.setUniform('freq', state.frequency + 2 * Math.sin(0.0007 * state.time))
         shader.setUniform('amp', state.trippiness + Math.max(0, 0.03 * Math.cos(0.001 * state.time)))
         shader.setUniform('moving', 0)
@@ -62,12 +64,6 @@ const sketch = p => {
         p.rect(0, 0, p.width, p.height)
 
         state.time += 0.1
-    }
-
-    p.mouseMoved = () => {
-        if (p.mouseX > 0 && p.mouseX < p.width && p.mouseY > 0 && p.mouseY < p.height) {
-            state.mouse = { x: p.mouseX, y: p.mouseY }
-        }
     }
 
     p.windowResized = () => {
